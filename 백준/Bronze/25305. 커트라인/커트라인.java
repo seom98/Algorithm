@@ -6,19 +6,23 @@ public class Main {
         int N = sc.nextInt();
         int M = sc.nextInt();
         int[] arr = new int[N];
+        int[] carr = new int[10001];
+        int[] aarr = new int[N];
+        
         for (int i = 0; i<N; i++) {
         	arr[i] = sc.nextInt();
+        	carr[arr[i]]++;
         }
-        for (int i = 0; i < M; i++) {
-        	for (int j = 0; j<N-i-1; j++) {
-        		int temp = 0;
-        		if (arr[j] > arr[j+1]) {
-        			temp = arr[j];
-        			arr[j] = arr[j+1];
-        			arr[j+1] = temp;
-        		}
-        	}
+        
+        for (int i = 1; i < 10001; i++) {
+        	carr[i] += carr[i-1];
         }
-        System.out.println(arr[arr.length-M]);
+        
+        for (int i = 0; i < N; i++) {
+			aarr[--carr[arr[i]]] = arr[i];
+        }
+        
+        
+        System.out.println(aarr[N-M]);
     }
 }
