@@ -21,7 +21,9 @@ public class Solution {
         			String multiply = String.valueOf(num_multiply); //두수를 곱한값을 스트링으로 변경.
         			boolean chack = true; //단조증가인지 확인.
         			for (int j = 0; j < multiply.length()-1; j++) { //스트링의 길이-1만큼 포문.
-        				if (multiply.charAt(j) > multiply.charAt(j+1)) //단조증가가 아니라면 체크를 false로.
+        				if (multiply.length() == 1) { //길이가 1이면 무조건 단조증가이므로 패스;
+        					break;
+        				} else if (multiply.charAt(j) > multiply.charAt(j+1)) //단조증가가 아니라면 체크를 false로.
         					chack = false;
         			}
         			if (chack && max < num_multiply) { //단조증가이면서 최댓값보다 큰값이 나왔을때. 
