@@ -7,8 +7,8 @@ public class Main {
 	static boolean[][] visited;
 	static int[] drow = { -1, 1, 0, 0 };
 	static int[] dcol = { 0, 0, -1, 1 };
-	static int[] drow2 = { -1, 1, 0, 0, 1, 1, -1, -1 };
-	static int[] dcol2 = { 0, 0, -1, 1, 1, -1, 1, -1 };
+	static int[] drow2 = { -1, 1, 0, 0, 1 };
+	static int[] dcol2 = { 0, 0, -1, 1, 1 };
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -38,7 +38,7 @@ public class Main {
 		}
 		
 		if (dep == 1) {			
-			for (int d = 0; d < 8; d++) {
+			for (int d = 0; d < 5; d++) {
 				int x = i + drow2[d];
 				int y = j + dcol2[d];
 				
@@ -49,7 +49,7 @@ public class Main {
 				}
 			}
 		}
-		else if (dep == 2 && drdc >= 4) {
+		else if (dep == 2 && drdc == 4) {
 			if (drdc == 4) {
 				visited[i-1][j] = true;
 				DFS(i-1, j, dep+1, sum+arr[i-1][j], drdc);
@@ -59,33 +59,6 @@ public class Main {
 				DFS(i, j-1, dep+1, sum+arr[i][j-1], drdc);
 				visited[i][j-1] = false;
 			} 
-			else if (drdc == 5) {
-				visited[i-1][j] = true;
-				DFS(i-1, j, dep+1, sum+arr[i-1][j], drdc);
-				visited[i-1][j] = false;
-				
-				visited[i][j+1] = true;
-				DFS(i, j+1, dep+1, sum+arr[i][j+1], drdc);
-				visited[i][j+1] = false;
-			} 
-			else if (drdc == 6) {
-				visited[i+1][j] = true;
-				DFS(i+1, j, dep+1, sum+arr[i+1][j], drdc);
-				visited[i+1][j] = false;
-				
-				visited[i][j-1] = true;
-				DFS(i, j-1, dep+1, sum+arr[i][j-1], drdc);
-				visited[i][j-1] = false;
-			} 
-			else if (drdc == 7) {
-				visited[i+1][j] = true;
-				DFS(i+1, j, dep+1, sum+arr[i+1][j], drdc);
-				visited[i+1][j] = false;
-				
-				visited[i][j+1] = true;
-				DFS(i, j+1, dep+1, sum+arr[i][j+1], drdc);
-				visited[i][j+1] = false;
-			}
 		}
 		else {
 			for (int d = 0; d < 4; d++) {
