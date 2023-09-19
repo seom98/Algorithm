@@ -31,16 +31,13 @@ public class Main {
 			int a = 0;
 			for (int i = 1; i < N-1; i++) {
 				for (int j = 1; j < M-1; j++) {
-					if (arr[i][j] != 0 && !visited[i][j]) {
+					if (arr[i][j] > 0 && !visited[i][j]) {
 						a++;
-						visited[i][j] = true;
 						DFS(i, j);
 					}
 				}
 			}
-			if (a > 1) {
-				break;
-			}
+			if (a > 1) break;
 			if (a == 0) {
 				System.out.println(0);
 				return;
@@ -49,17 +46,17 @@ public class Main {
 			int[][] count = new int[N][M];
 			for (int i = 1; i < N-1; i++) {
 				for (int j = 1; j < M-1; j++) {
-					if (arr[i][j] != 0) {
-						if(arr[i-1][j] == 0) {
+					if (arr[i][j] > 0) {
+						if(arr[i-1][j] <= 0) {
 							count[i][j]++;
 						}
-						if(arr[i+1][j] == 0) {
+						if(arr[i+1][j] <= 0) {
 							count[i][j]++;
 						}
-						if(arr[i][j-1] == 0) {
+						if(arr[i][j-1] <= 0) {
 							count[i][j]++;
 						}
-						if(arr[i][j+1] == 0) {
+						if(arr[i][j+1] <= 0) {
 							count[i][j]++;
 						}
 					}
@@ -67,10 +64,8 @@ public class Main {
 			}
 			for (int i = 1; i < N-1; i++) {
 				for (int j = 1; j < M-1; j++) {
-					if (count[i][j] != 0) {						
+					if (count[i][j] > 0)					
 						arr[i][j] -= count[i][j];
-						if (arr[i][j] < 0) arr[i][j] = 0;
-					}
 				}
 			}
 		}
@@ -78,13 +73,13 @@ public class Main {
 	}
 	
 	public static void DFS(int i, int j) {
+        visited[i][j] = true; 
 		for (int d = 0; d < 4; d++) {
 			int x = i + drow[d];
 			int y = j + dcol[d];
-			if (arr[x][y] != 0 && !visited[x][y]) {				
-				visited[x][y] = true; 
+			
+			if (arr[x][y] > 0 && !visited[x][y])
 				DFS(x, y);
-			}
 		}
 	}
 }
