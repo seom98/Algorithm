@@ -1,12 +1,14 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		int a = sc.nextInt();
-		int b = sc.nextInt();
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+		int a = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
 		
 		//WB로시작하는 체스판
 		String[][] chas = new String[8][8];
@@ -22,7 +24,7 @@ public class Main {
 		//입력받는 네모판
 		String[][] squ = new String[a][b];
 		for (int i = 0; i < a; i++) {
-			squ[i] = sc.next().split("");
+			squ[i] = br.readLine().split("");
 		}
 		
 		int count1;
