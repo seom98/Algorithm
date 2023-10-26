@@ -47,14 +47,14 @@ public class Main {
                             C[x][y] = -1;
                             queue.add(new int[] {x, y});
                         } else
-                            C[x][y]++;
+                            C[x][y] = 1;
                     }
                 }
             }
             int temp = 0;
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < M; j++) {
-                    if (C[i][j] > 0) {
+                    if (C[i][j] == 1) {
                         arr[i][j] = 0;
                         temp++;
                     }
