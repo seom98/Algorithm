@@ -1,40 +1,26 @@
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
+		StringBuilder sb = new StringBuilder();
 		for (int t = 0; t < T; t++) {
 			char[] RD = sc.next().toCharArray();
-			int M = RD.length;
 			int N = sc.nextInt();
+			StringTokenizer st = new StringTokenizer(sc.next(), "[,]");
 			int[] num = new int[N];
-			StringTokenizer st = new StringTokenizer(sc.next(), ",[]");
-			for (int i = 0; i < N; i++) {
-				num[i] = Integer.parseInt(st.nextToken());
-			}
-			int start = 0;
-			int end = N-1;
-			int RCount = 0;
-			for (int i = 0; i < M; i++) {
-				// 뒤집는 부분
-				if (RD[i] == 'R') {
-					if (RCount == 0) RCount++;
-					else RCount--;
-				} 
-				
-				// 하나 빼는 부분
+			for (int i = 0; i < N; i++) num[i] = Integer.parseInt(st.nextToken());
+			int start = 0, end = N-1, RCount = 0;
+			for (int i = 0; i < RD.length; i++) {
+				if (RD[i] == 'R') RCount += RCount == 0 ? 1 : -1;
 				else {
 					if (RCount == 0) start++;
 					else end--;
 				}
 			}
-			if (end - start < -1) {
-				System.out.println("error");
-			} else {				
-				StringBuilder sb = new StringBuilder();
+			if (end - start < -1) sb.append("error\n");
+			else {				
 				sb.append("[");
 				if (RCount == 0) {
 					for (int i = start; i < end+1; i++) {
@@ -47,9 +33,9 @@ public class Main {
 						else sb.append(num[i]);
 					}
 				}
-				sb.append("]");
-				System.out.println(sb);
+				sb.append("]\n");
 			}
 		}
+		System.out.println(sb);
 	}
 }
